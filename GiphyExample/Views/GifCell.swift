@@ -10,6 +10,8 @@ import UIKit
 import SDWebImage
 
 protocol GifCellViewModelType: class {
+    var width: Int { get }
+    var height: Int { get }
     var url: URL { get }
 }
 
@@ -18,6 +20,9 @@ protocol GifCellViewModelType: class {
 class GifCell: UITableViewCell {
     
     @IBOutlet var gifView: UIImageView!
+    @IBOutlet var widthConstraint: NSLayoutConstraint!
+    @IBOutlet var heightConstraint: NSLayoutConstraint!
+    @IBOutlet var indicatorView: UIActivityIndicatorView!
     
     var viewModel: GifCellViewModelType? {
         didSet {
@@ -37,6 +42,19 @@ class GifCell: UITableViewCell {
     }
     
     private func update() {
-        gifView.sd_setImage(with: viewModel?.url, completed: nil)
+        
+        guard let viewModel = viewModel else {
+            indicatorView.stopAnimating()
+            gifView.sd_setImage(with: nil, completed: nil)
+            return
+        }
+        
+        widthConstraint.constant = CGFloat(viewModel.width)
+        heightConstraint.constant = CGFloat(viewModel.height)
+        
+        indicatorView.startAnimating()
+        gifView.sd_setImage(with: viewModel.url, completed: { [weak self] (image, error, _, completedUrl) in
+            self?.indicatorView.stopAnimating()
+        })
     }
 }

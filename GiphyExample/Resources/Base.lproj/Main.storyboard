@@ -33,14 +33,22 @@
                                                 <constraint firstAttribute="height" constant="200" id="aKB-kg-HIj"/>
                                             </constraints>
                                         </imageView>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bRK-If-CgX">
+                                            <rect key="frame" x="177" y="100" width="20" height="20"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="bRK-If-CgX" firstAttribute="centerX" secondItem="8Qp-Sd-ZI9" secondAttribute="centerX" id="4TE-8R-n8j"/>
                                         <constraint firstItem="1UX-b6-6VO" firstAttribute="centerY" secondItem="8Qp-Sd-ZI9" secondAttribute="centerY" id="OYi-qE-krH"/>
+                                        <constraint firstItem="bRK-If-CgX" firstAttribute="centerY" secondItem="8Qp-Sd-ZI9" secondAttribute="centerY" id="bPE-rn-mbY"/>
                                         <constraint firstItem="1UX-b6-6VO" firstAttribute="centerX" secondItem="8Qp-Sd-ZI9" secondAttribute="centerX" id="lZR-2y-oki"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="gifView" destination="1UX-b6-6VO" id="rLD-4k-oGo"/>
+                                    <outlet property="heightConstraint" destination="aKB-kg-HIj" id="ct7-mU-0AL"/>
+                                    <outlet property="indicatorView" destination="bRK-If-CgX" id="v1S-At-S2p"/>
+                                    <outlet property="widthConstraint" destination="9jB-l4-pBp" id="eMG-3e-Ukv"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
