@@ -6,7 +6,7 @@ A simple Giphy search app.
 
 - check out the project from git
 - run `pod install`
-- open the workspace and `CMD + R`
+- open the workspace and run the project: `CMD + R`
 
 # Further development
 - Make search realtime with slight delay
