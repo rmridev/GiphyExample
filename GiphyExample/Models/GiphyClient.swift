@@ -46,7 +46,7 @@ class GiphyClient {
                     failure?(error)
                 }
             case .failure(let error):
-                print(error)
+                failure?(error)
             }
         }
     }
@@ -75,7 +75,7 @@ class GiphyClient {
                     failure?(error)
                 }
             case .failure(let error):
-                print(error)
+                failure?(error)
             }
         }
     }
