@@ -18,5 +18,4 @@ class GifCellViewModel: GifCellViewModelType {
         self.item = item
         self.url = item.images.fixedHeight.url
     }
-    
 }

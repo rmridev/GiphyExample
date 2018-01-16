@@ -11,7 +11,7 @@ import Argo
 import Runes
 import Curry
 
-// MARK: -
+// MARK: - Model objects
 
 struct GiphyItem {
     var type: String
@@ -25,8 +25,8 @@ struct GiphyImages {
 
 struct GiphyImage {
     var url: URL
-    var width: String
-    var height: String
+    var width: Int
+    var height: Int
 }
 
 struct GiphyResults {
@@ -34,7 +34,7 @@ struct GiphyResults {
 }
 
 
-// MARK: - Argo extensions
+// MARK: - Model Argo extensions
 
 extension GiphyResults: Argo.Decodable {
     
@@ -66,8 +66,8 @@ extension GiphyImage: Argo.Decodable {
     static func decode(_ json: JSON) -> Decoded<GiphyImage> {
         return curry(GiphyImage.init)
             <^> json <| "url"
-            <*> json <| "width"
-            <*> json <| "height"
+            <*> decodeIntOrString(json, parameter: "width")
+            <*> decodeIntOrString(json, parameter: "height")
     }
 }
 
@@ -84,4 +84,15 @@ extension URL: Argo.Decodable {
         default: return .typeMismatch(expected:"String type for URL conversion", actual:"\(json)")
         }
     }
+}
+
+fileprivate func decodeIntOrString(_ json: JSON, parameter: String) -> Decoded<Int> {
+    if let intValue: Int = (json <| parameter).value {
+        return Decoded.success(intValue)
+    } else {
+        if let stringValue: String = (json <| parameter).value, let intValue = Int(stringValue) {
+            return Decoded.success(intValue)
+        }
+    }
+    return Decoded.failure(DecodeError.custom("Could not decode Int"))
 }

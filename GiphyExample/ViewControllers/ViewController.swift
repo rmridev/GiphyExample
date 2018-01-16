@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: - ViewModel protocol
+
 protocol SearchViewModelType: class {
     func numberOfItems() -> Int
     func itemAt(_ index: Int) -> GifCellViewModelType
@@ -69,7 +71,7 @@ class ViewController: UITableViewController {
     // MARK: -
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return viewModel != nil ? 1 : 0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

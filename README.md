@@ -1,5 +1,7 @@
 
 
+A simple Giphy search app.
+
 # Installation
 
 - check out the project from git
@@ -7,3 +9,5 @@
 - open the workspace and `CMD + R`
 
 # Further development
+- Make search realtime with slight delay
+- use reactive bindings for ViewModel and ViewController interaction

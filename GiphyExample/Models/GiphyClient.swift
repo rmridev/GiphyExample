@@ -10,11 +10,22 @@ import UIKit
 import Alamofire
 import Argo
 
+// MARK: -
+
+protocol Cancelable {
+    func cancel()
+}
+
+extension DataRequest: Cancelable {}
+
+// MARK: -
+
 class GiphyClient {
     
     let apiKey: String = "NA45aP4ExnxclSXPREcspi5CYcOchCRC"
     
-    func getTrending(completion: @escaping (GiphyResults) -> Void, failure: ((Error) -> Void)? = nil) {
+    @discardableResult
+    func getTrending(completion: @escaping (GiphyResults) -> Void, failure: ((Error) -> Void)? = nil) -> Cancelable {
         let url = "https://api.giphy.com/v1/gifs/trending"
         let parameters: [String: Any] = [
             "api_key": apiKey,
@@ -23,7 +34,7 @@ class GiphyClient {
             "lang": "en",
             "rating": "G"
         ]
-        Alamofire.request(url, parameters: parameters).responseJSON { response in
+        return Alamofire.request(url, parameters: parameters).responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -40,7 +51,8 @@ class GiphyClient {
         }
     }
     
-    func search(_ query: String, completion: @escaping (GiphyResults) -> Void, failure: ((Error) -> Void)? = nil) {
+    @discardableResult
+    func search(_ query: String, completion: @escaping (GiphyResults) -> Void, failure: ((Error) -> Void)? = nil) -> Cancelable {
         
         let url = "https://api.giphy.com/v1/gifs/search"
         let parameters: [String: Any] = [
@@ -51,7 +63,7 @@ class GiphyClient {
             "lang": "en",
             "rating": "G"
         ]
-        Alamofire.request(url, parameters: parameters).responseJSON { response in
+        return Alamofire.request(url, parameters: parameters).responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -67,5 +79,4 @@ class GiphyClient {
             }
         }
     }
-
 }

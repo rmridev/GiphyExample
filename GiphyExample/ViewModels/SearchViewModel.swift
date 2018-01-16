@@ -11,6 +11,7 @@ import UIKit
 class SearchViewModel: SearchViewModelType {
 
     private let client: GiphyClient
+    private var request: Cancelable?
     
     // MARK: -
     
@@ -30,14 +31,17 @@ class SearchViewModel: SearchViewModelType {
     
     func search(_ query: String?) {
 
+        self.request?.cancel()
+        self.request = nil
+        
         if let query = query {
-            client.search(query, completion: { [weak self] results in
+            request = client.search(query, completion: { [weak self] results in
                 self?.handleResults(results)
             }, failure: { [weak self] error in
                 self?.handleError(error)
             })
         } else {
-            client.getTrending(completion: { [weak self] (results) in
+            request = client.getTrending(completion: { [weak self] (results) in
                 self?.handleResults(results)
             }, failure: { [weak self] error in
                 self?.handleError(error)
@@ -58,7 +62,7 @@ class SearchViewModel: SearchViewModelType {
         errorHandler?(error)
     }
     
-    // MARK: -
+    // MARK: - SearchViewModelType protocol
     
     func numberOfItems() -> Int {
         return items.count
