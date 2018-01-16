@@ -21,9 +21,15 @@ class SearchViewModel: SearchViewModelType {
     
     // MARK: -
     
+    deinit {
+        request?.cancel()
+    }
+    
     init(client: GiphyClient) {
         self.client = client
     }
+    
+    // MARK: -
     
     func load() {
         search(nil)
@@ -48,7 +54,6 @@ class SearchViewModel: SearchViewModelType {
             })
         }
     }
-    
     
     // MARK: -
     
