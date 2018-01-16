@@ -5,13 +5,14 @@ A simple Giphy search app.
 # Architecture
 
 The application is built following the Model View ViewModel principles.
-- Models: includes API data models and client. JSON data parsing is mapped to Swift structs using the Argo third party object mapper library
-- ViewModels: connecting the data layer and the view objects (ViewControllers and Views)
-- ViewControllers and Views: together they represent the view layer. These define a ViewModel protocol for maximum separation from business logic. In the form of assignable closures (ex. updateHandler) are used for a very basic data binding to get notifications from the underlying ViewModel object about updates
+Project files are organised based on their role.
+- *Models*: includes API data models and client. JSON data parsing is mapped to Swift structs using the [Argo](https://github.com/thoughtbot/Argo) third party object mapper library
+- *ViewModels*: connecting the data layer and the view objects (ViewControllers and Views)
+- *ViewControllers* and *Views*: together they represent the view layer. These define a ViewModel protocol for maximum separation from business logic. In the form of assignable closures (ex. updateHandler) are used for a very basic data binding to get notifications from the underlying ViewModel object about updates
 
 # Installation
 
-- check out the project from git
+- checkout the project from git
 - run `pod install`
 - open the workspace and run the project: `CMD + R`
 
