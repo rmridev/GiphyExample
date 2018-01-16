@@ -618,7 +618,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D6D31C5F16BBBC002ED4DE6D /* Pods-GiphyExampleTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XG6G6RA29P;
@@ -636,7 +635,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4B5127C78D2D7701561897F /* Pods-GiphyExampleTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XG6G6RA29P;
