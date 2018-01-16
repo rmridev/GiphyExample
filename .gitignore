@@ -15,4 +15,5 @@ DerivedData
 .DS_Store
 codesigndoc_exports
 Pods
+Podfile.lock
 
